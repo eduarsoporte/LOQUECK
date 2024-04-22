@@ -1,1 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#08298a">
+<title> RADIO UAIIN</title>
+<!-- libreria de Estilo -->
+<link href="css/style.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<style>    
+html,body{font-family:"Open Sans",sans-serif;height:100%;margin:0;display:flex;flex-direction:column;color:#272829;}
+</style>
+<!-- THE END -->
+<!-- sw -->
+<link rel="manifest" href="./manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" integrity="sha512-5A0LKI/xGVxGl+2ffA+tSPa+US+js5Mr9YvuZFaN8m2FxEl8UyvpFrfmVbdsrhksvbuoThf+WI1/djjDhjquHA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://kit.fontawesome.com/b54a4aa7c7.js" crossorigin="anonymous"></script>
+</head>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Chat en Vivo</h5>
+        <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <main id="procesos"></main>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerrarSesion" class="btn btn-primary d-none" onclick="cerrar();">Cerrar Sesión</button>
+        <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>        
+      </div>
+    </div>
+  </div>
+</div>
 
+<body>
+<div style="height:100%">
+<button type="button" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+<header id="header">
+<nav class="nav-menu">
+<ul>
+<li><a target="_blank" href="#" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#staticBackdrop"><i class="fa-regular fa-comments"></i><span>Chat en Vivo</span></a></li>
+<li><a target="_blank" href="https://www.facebook.com/UniversidadAutonomaIndigenaIntercultural"><i class="fab fa-facebook-square" alt="Facebook"></i>
+<span>Facebook</span></a></li>
+<li><a target="_blank" href="https://www.instagram.com/uaiin.cric?igsh=NDVhb3VqNm05NXJi"><i class="fab fa-instagram-square" alt="Instagram"></i>
+<span>Instagram</span></a></li>
+<li><a href="https://api.whatsapp.com/send?phone=3023370978&text=Hola yo escucho radio uaiin" target="_blank"><i class="fab fa-whatsapp-square" alt="Whatsapp"></i>
+<span>Whatsapp</span></a></li>
+</ul>
+</nav>
+</header>
+<!-- LIBRERIA ANIMACION -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/lunaradio-animado.js"></script>
+<script>
+    function cargarContenidologin() {
+        const mainElement = document.getElementById("procesos");
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                mainElement.innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET","./pages/login.html", true);
+        xhttp.send();
+    }
+    cargarContenidologin();
+</script>
+
+<div id="player"></div>
+<script>
+$("#player").lunaradio({
+userinterface: "big", 
+backgroundcolor: "rgba(9,15,25,0.8)",
+fontcolor: "#ffffff",
+hightlightcolor: "#000000", 
+fontname: "Saira Condensed", 
+googlefont: "Saira+Condensed:wght@100", 
+fontratio: "0.4", 
+radioname: "RADIO UAIIN", 
+scroll: "true", 
+coverimage: "https://i.postimg.cc/7L55PzKB/LOGO-APK.png",
+onlycoverimage: "false",
+coverstyle: "animated",
+usevisualizer: "real", 
+visualizertype: "6", 
+itunestoken: "1000lIPN", 
+metadatatechnic: "", //fallback (usar para zeno)
+corsproxy: "",
+usestreamcorsproxy: "false",
+streamurl: "https://sia.uaiinpebi-cric.edu.co:8010/",
+streamtype: "icecast2", //soporta: zeno, icecast2, shoutcast2
+idzeno: "",
+icecastmountpoint: "/radio.mp3", 
+shoutcastpath: "",
+shoutcastid: "1", 
+metadatainterval: "26000", 
+volume: "50",
+debug: "false",
+autoplay: "true",
+displayliveicon: "true",
+visualizeropacity: "1.0",
+multicolorvisualizer: "true",
+color1: "#00FF00",
+color2: "#ffff00",
+color3: "#FF1F6F",
+color4: "#FF1F6F",
+});
+</script>
+
+
+<div class="background_hora"><div id="relogio">15:00:05</div></div>
+<script>
+function reloj() {
+let elementoID = document.getElementById('relogio');
+let horalocal = new Date().toLocaleTimeString('es');
+elementoID.innerHTML = horalocal;
+}
+setInterval(reloj, 1000);
+</script>
+</div>
+
+
+<footer style="display:grid;align-content:end">
+<div style="background-color:#222;color:#fff;text-align:center;padding:10px"> 
+&copy; Copyright 2024 - <a href="http://www.google.com">Universidad Autonoma Indigena Intercultural</a> 
+</div>
+</footer>
+
+<script>
+$(".mobile-nav-toggle").click(function(){
+$("body").toggleClass("mobile-nav-active");
+$(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+});
+</script>
+<!-- firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- Tu script -->
+<script src="./conexion/conexion.js"></script>
+<script src="./js/moment.js"></script>
+<script src="./js/main.js"></script>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="./script.js"></script>
+</body>
+</html>
